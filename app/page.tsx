@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ShoppingBasket, Recycle, Users } from "lucide-react"
+import { ArrowRight, ShoppingBasket, Recycle, Users, Coins } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
@@ -37,6 +37,12 @@ export default function Home() {
             </Link>
             <Link href="/blog" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors">
               Blog
+            </Link>
+            <Link
+              href="/blockchain"
+              className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors"
+            >
+              Blockchain
             </Link>
           </nav>
           <div className="flex items-center gap-4">
@@ -136,6 +142,15 @@ export default function Home() {
                 <h3 className="text-xl font-bold mb-2">Community Building</h3>
                 <p className="text-gray-600">
                   Connect with like-minded individuals and build a community around sustainable agriculture.
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center p-6 bg-emerald-50 rounded-lg transition-transform hover:scale-105">
+                <div className="h-12 w-12 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+                  <Coins className="h-6 w-6 text-emerald-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Blockchain Traceability</h3>
+                <p className="text-gray-600">
+                  Track product origins and verify authenticity with our blockchain integration.
                 </p>
               </div>
             </div>
