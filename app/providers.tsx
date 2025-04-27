@@ -1,30 +1,19 @@
 'use client';
 
-import type { ReactNode } from 'react';
-import { OnchainKitProvider } from '@coinbase/onchainkit';
-import { base, baseSepolia } from 'wagmi/chains';
-import { WagmiConfig, createConfig } from 'wagmi';
-import { createPublicClient, http } from 'viem';
+import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { Sepolia } from "@thirdweb-dev/chains";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const selectedChain = process.env.NEXT_PUBLIC_NETWORK === 'mainnet' ? base : baseSepolia;
+const queryClient = new QueryClient();
 
-const config = createConfig({
-  chains: [base, baseSepolia],
-  transports: {
-    [base.id]: http(),
-    [baseSepolia.id]: http()
-  }
-});
+export function Providers({ children }: { children: React.ReactNode }) {
+  const network = process.env.NEXT_PUBLIC_NETWORK === "sepolia" ? Sepolia : Sepolia;
 
-export function Providers({ children }: { children: ReactNode }) {
   return (
-    <WagmiConfig config={config}>
-      <OnchainKitProvider
-        apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
-        chain={selectedChain}
-      >
+    <ThirdwebProvider activeChain={network}>
+      <QueryClientProvider client={queryClient}>
         {children}
-      </OnchainKitProvider>
-    </WagmiConfig>
+      </QueryClientProvider>
+    </ThirdwebProvider>
   );
 } 
